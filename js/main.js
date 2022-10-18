@@ -57,8 +57,20 @@ const LIKES = getRandomIntInclusive(15, 200);
 // eslint-disable-next-line no-unused-vars
 const COMMENTS = getRandomIntInclusive(0, 200);
 
-const getRandomArrayElement = (elements) => elements[getRandomIntInclusive(0, elements.length - 1 )];
+function createRandomGenerator (min, max) {
+  const previousValues = [];
 
+  return function () {
+    let currentValue = getRandomIntInclusive(min, max);
+    while (previousValues.includes(currentValue)) {
+      currentValue = getRandomIntInclusive(min, max);
+    }
+    previousValues.push(currentValue);
+    return currentValue;
+  };
+}
+
+const getRandomArrayElement = (elements) => elements[createRandomGenerator(0, elements.length - 1 )];
 
 const createObject = function() {
   return {
