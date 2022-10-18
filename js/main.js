@@ -7,7 +7,6 @@
 const IDS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
 
 // url, строка — адрес картинки вида photos/{{i}}.jpg, где {{i}} — это число от 1 до 25. Адреса картинок не должны повторяться.
-
 // eslint-disable-next-line no-unused-vars
 const URL_PHOTOS = [
   'photos/1.jpg',
@@ -38,34 +37,54 @@ const URL_PHOTOS = [
 ];
 
 // description, строка — описание фотографии. Описание придумайте самостоятельно.
-
 // eslint-disable-next-line no-unused-vars
 const DESC_PHOTOS = [
   'Пейзаж'
 ];
+
+// Функция генерация сслучайных числе от и до включительно
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
+}
 
 // likes, число — количество лайков, поставленных фотографии. Случайное число от 15 до 200.
 // eslint-disable-next-line no-unused-vars
 const LIKES = getRandomIntInclusive(15, 200);
 
 // comments, число — количество комментариев, оставленных другими пользователями к этой фотографии. Случайное число от 0 до 200.
-
 // eslint-disable-next-line no-unused-vars
 const COMMENTS = getRandomIntInclusive(0, 200);
 
-const maxStringLength = (string, maxLength) => {
-  if (string.length < maxLength) {
-    return true;
-  } else {
-    return false;
-  }
+const getRandomArrayElement = (elements) => elements[getRandomIntInclusive(0, elements.length - 1 )];
+
+
+const createObject = function() {
+  return {
+    id: getRandomArrayElement(IDS),
+    url: getRandomArrayElement(URL_PHOTOS),
+    description: DESC_PHOTOS,
+    likes: LIKES,
+    comments: COMMENTS,
+  };
 };
 
-maxStringLength();
+const similarObjects = Array.from({length: 25}, createObject);
 
-function getRandomIntInclusive(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
-}
+// eslint-disable-next-line no-console
+console.log(
+  similarObjects
+);
+
+// const maxStringLength = (string, maxLength) => {
+//   if (string.length < maxLength) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// };
+
+// maxStringLength();
+
 
