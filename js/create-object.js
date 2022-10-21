@@ -1,6 +1,6 @@
-import {getRandomArrayElement} from '/js/util.js';
-import {getRandomIntInclusive} from '/js/util.js';
-import {MIN_LIKES, MAX_LIKES, MIN_COMMENTS, MAX_COMMENTS, DESC_PHOTOS} from '/js/data.js';
+import {getRandomArrayElement} from './util.js';
+import {getRandomIntInclusive} from './util.js';
+import {MIN_LIKES, MAX_LIKES, MIN_COMMENTS, MAX_COMMENTS, DESC_PHOTOS} from './data.js';
 
 const createPicture = (index) => ({
   id: index,
