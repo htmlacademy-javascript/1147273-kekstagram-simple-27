@@ -6,7 +6,7 @@ const createPicture = (index) => ({
   id: index,
   url: `photos/${index}.jpg`,
   description: getRandomArrayElement(DESC_PHOTOS),
-  ikes: getRandomIntInclusive(MIN_LIKES, MAX_LIKES),
+  likes: getRandomIntInclusive(MIN_LIKES, MAX_LIKES),
   comments: getRandomIntInclusive(MIN_COMMENTS, MAX_COMMENTS),
 });
 

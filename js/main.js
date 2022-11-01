@@ -1,5 +1,5 @@
 import {createObjects} from './create-object.js';
+import {similarPhotos} from './thumbs.js';
 
-// eslint-disable-next-line no-console
-console.log(createObjects());
-
+createObjects();
+similarPhotos();
