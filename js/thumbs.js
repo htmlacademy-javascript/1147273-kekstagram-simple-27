@@ -8,13 +8,15 @@ const picturesUsersTemplate = document.querySelector('#picture')
 
 const similarPhotos = createObjects();
 
-similarPhotos.forEach((user) => {
-  const pictureElement = picturesUsersTemplate.cloneNode(true);
-  pictureElement.querySelector('.picture__img').src = user.url;
-  pictureElement.querySelector('.picture__comments').textContent = user.comments;
-  pictureElement.querySelector('.picture__likes').textContent = user.likes;
-  pictureElement.querySelector('.picture__img').src = user.url;
-  usersPhotos.appendChild(pictureElement);
-});
+const similarPhotosAbove = function() {
+  similarPhotos.forEach((user) => {
+    const pictureElement = picturesUsersTemplate.cloneNode(true);
+    pictureElement.querySelector('.picture__img').src = user.url;
+    pictureElement.querySelector('.picture__comments').textContent = user.comments;
+    pictureElement.querySelector('.picture__likes').textContent = user.likes;
+    pictureElement.querySelector('.picture__img').src = user.url;
+    usersPhotos.appendChild(pictureElement);
+  });
+};
 
-export {similarPhotos};
+export {similarPhotosAbove};
