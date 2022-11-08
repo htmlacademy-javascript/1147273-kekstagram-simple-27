@@ -1,0 +1,3 @@
+import './thumbs.js';
+
+
