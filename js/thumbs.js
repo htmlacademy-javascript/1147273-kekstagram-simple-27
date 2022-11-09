@@ -8,7 +8,7 @@ const picturesUsersTemplate = document.querySelector('#picture')
 
 const similarPhotos = createObjects();
 
-const similarPhotosAbove = function() {
+const createSimilarPhotosAbove = () => {
   similarPhotos.forEach((user) => {
     const pictureElement = picturesUsersTemplate.cloneNode(true);
     pictureElement.querySelector('.picture__img').src = user.url;
@@ -19,4 +19,4 @@ const similarPhotosAbove = function() {
   });
 };
 
-export {similarPhotosAbove};
+export {createSimilarPhotosAbove};
