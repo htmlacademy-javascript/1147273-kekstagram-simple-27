@@ -1,5 +1,4 @@
 import {createObjects} from './create-object.js';
-import './form.js';
 
 const usersPhotos = document.querySelector('.pictures');
 
