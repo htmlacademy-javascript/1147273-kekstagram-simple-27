@@ -1,5 +1,5 @@
 import {createObjects} from './create-object.js';
-import {similarPhotosAbove} from './thumbs.js';
+import {createSimilarPhotosAbove} from './thumbs.js';
 
 createObjects();
-similarPhotosAbove();
+createSimilarPhotosAbove();
