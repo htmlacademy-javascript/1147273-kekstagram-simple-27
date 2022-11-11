@@ -1,5 +1,5 @@
 import {resetScale} from './scale.js';
-import { resetEffects } from './effect.js';
+import {resetEffects} from './effect.js';
 
 const uploadFile = document.getElementById('upload-file');
 const formEditImg = document.querySelector('.img-upload__overlay');
