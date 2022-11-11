@@ -1,3 +1,5 @@
+import {resetScale} from './scale.js';
+
 const uploadFile = document.getElementById('upload-file');
 const formEditImg = document.querySelector('.img-upload__overlay');
 const body = document.querySelector('body');
@@ -23,6 +25,7 @@ const setFormHandlers = () => {
     formEditImg.classList.add('hidden');
     body.classList.remove('modal-open');
     formUpload.reset();
+    resetScale();
     document.removeEventListener('keydown', onPopupEscKeydown);
   });
 };
