@@ -32,4 +32,9 @@ const setFormHandlers = () => {
   });
 };
 
+formUpload.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+
+});
+
 export {setFormHandlers};
