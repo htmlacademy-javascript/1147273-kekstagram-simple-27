@@ -1,6 +1,5 @@
 import {resetScale} from './scale.js';
 import {resetEffects} from './effect.js';
-import {showAlert} from './util.js';
 
 const uploadFile = document.getElementById('upload-file');
 const formEditImg = document.querySelector('.img-upload__overlay');
@@ -35,30 +34,10 @@ const setFormHandlers = () => {
 
 const closeUserModal = () => {
   formEditImg.classList.add('hidden');
+  body.classList.remove('modal-open');
+  formUpload.reset();
+  resetScale();
+  resetEffects();
 };
 
-const setUserFormSubmit = (onSuccess) => {
-  formUpload.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    const formData = new FormData(evt.target);
-    fetch(
-      'https://27.javascript.pages.academy/kekstagram-simple',
-      {
-        method: 'POST',
-        body: formData,
-      },
-    ).then((response) => {
-      if (response.ok) {
-        onSuccess();
-      } else {
-        showAlert('Не удалось отправить форму. Попробуйте ещё раз');
-      }
-    })
-      .catch(() => {
-        showAlert('Не удалось отправить форму. Попробуйте ещё раз');
-      });
-  });
-};
-
-
-export {setFormHandlers, setUserFormSubmit, closeUserModal};
+export {setFormHandlers, closeUserModal, formUpload};
