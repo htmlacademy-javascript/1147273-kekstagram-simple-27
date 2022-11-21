@@ -11,12 +11,27 @@ const getRandomIntInclusive = (min, max) => {
 // eslint-disable-next-line no-unused-vars
 const getRandomArrayElement = (elements) => elements[getRandomIntInclusive(0, elements.length - 1 )];
 
-// const maxStringLength = (string, maxLength) => {
-//   if (string.length < maxLength) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// };
+const ALERT_SHOW_TIME = 5000;
 
-export {getRandomArrayElement, getRandomIntInclusive};
+const showAlert = (message) => {
+  const alertContainer = document.createElement('div');
+  alertContainer.style.zIndex = '100';
+  alertContainer.style.position = 'absolute';
+  alertContainer.style.left = '0';
+  alertContainer.style.top = '0';
+  alertContainer.style.right = '0';
+  alertContainer.style.padding = '10px 3px';
+  alertContainer.style.fontSize = '30px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.backgroundColor = 'red';
+
+  alertContainer.textContent = message;
+
+  document.body.append(alertContainer);
+
+  setTimeout(() => {
+    alertContainer.remove();
+  }, ALERT_SHOW_TIME);
+};
+
+export {getRandomArrayElement, getRandomIntInclusive, showAlert};

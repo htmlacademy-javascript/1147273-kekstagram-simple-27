@@ -32,4 +32,47 @@ const setFormHandlers = () => {
   });
 };
 
-export {setFormHandlers};
+const closeUserModal = () => {
+  formEditImg.classList.add('hidden');
+  body.classList.remove('modal-open');
+  formUpload.reset();
+  resetScale();
+  resetEffects();
+};
+
+const success = document.querySelector('#success')
+  .content
+  .querySelector('.success');
+
+const err = document.querySelector('#error')
+  .content
+  .querySelector('.error');
+
+const onPopupEscKeydownSuccess = (evt) => {
+  if (evt.key === 'Escape') {
+    evt.preventDefault();
+    success.remove();
+    err.remove();
+    document.removeEventListener('keydown', onPopupEscKeydownSuccess);
+  }
+};
+
+const createSuccess = () => {
+  document.body.appendChild(success);
+  document.addEventListener('keydown', onPopupEscKeydownSuccess);
+  success.addEventListener('click', () => {
+    success.remove();
+    document.removeEventListener('keydown', onPopupEscKeydownSuccess);
+  });
+};
+
+const createErr = () => {
+  document.body.appendChild(err);
+  document.addEventListener('keydown', onPopupEscKeydownSuccess);
+  err.addEventListener('click', () => {
+    err.remove();
+    document.removeEventListener('keydown', onPopupEscKeydownSuccess);
+  });
+};
+
+export {setFormHandlers, closeUserModal, formUpload, createSuccess, createErr};
