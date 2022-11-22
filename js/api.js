@@ -13,7 +13,7 @@ const setUserFormSubmit = (onSuccess, onFail) => {
     evt.preventDefault();
     const formData = new FormData(evt.target);
     fetch(
-      'https://27.javascript.pages.academy/kekstagram-simple',
+      'https://27.javascript.pages.academy/kekstagram-simpl',
       {
         method: 'POST',
         body: formData,

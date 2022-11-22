@@ -44,7 +44,7 @@ const success = document.querySelector('#success')
   .content
   .querySelector('.success');
 
-const err = document.querySelector('#error')
+const error = document.querySelector('#error')
   .content
   .querySelector('.error');
 
@@ -52,8 +52,9 @@ const onPopupEscKeydownSuccess = (evt) => {
   if (evt.key === 'Escape') {
     evt.preventDefault();
     success.remove();
-    err.remove();
-    document.removeEventListener('keydown', onPopupEscKeydownSuccess);
+    error.remove();
+    error.removeEventListener('keydown', onPopupEscKeydownSuccess);
+    document.addEventListener('keydown', onPopupEscKeydownSuccess);
   }
 };
 
@@ -66,13 +67,13 @@ const createSuccess = () => {
   });
 };
 
-const createErr = () => {
-  document.body.appendChild(err);
-  document.addEventListener('keydown', onPopupEscKeydownSuccess);
-  err.addEventListener('click', () => {
-    err.remove();
-    document.removeEventListener('keydown', onPopupEscKeydownSuccess);
+const createError = () => {
+  document.body.appendChild(error);
+  error.addEventListener('keydown', onPopupEscKeydownSuccess);
+  document.removeEventListener('keydown', onPopupEscKeydownSuccess);
+  error.addEventListener('click', () => {
+    error.remove();
   });
 };
 
-export {setFormHandlers, closeUserModal, formUpload, createSuccess, createErr};
+export {setFormHandlers, closeUserModal, formUpload, createSuccess, createError};
