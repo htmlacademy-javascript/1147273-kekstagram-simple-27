@@ -1,12 +1,11 @@
-import {showAlert} from './util.js';
 import { formUpload, createSuccess} from './form.js';
 
-const getPhotos = (onSuccess) =>
+const getPhotos = (onSuccess, onError) =>
   fetch('https://27.javascript.pages.academy/kekstagram-simple/data')
     .then((response) => response.json())
     .then((photos) => {onSuccess(photos);})
     .catch(() => {
-      showAlert('Не удалось отправить форму. Попробуйте ещё раз');
+      onError();
     });
 
 const setUserFormSubmit = (onSuccess, onFail) => {

@@ -1,10 +1,8 @@
-import {createObjects} from './create-object.js';
 import {setFormHandlers, closeUserModal, createErr} from './form.js';
 import {getPhotos, setUserFormSubmit} from './api.js';
 import {createSimilarPhotosAbove} from './thumbs.js';
+import { showAlert } from './util.js';
 
-createObjects();
 setFormHandlers();
-getPhotos(createSimilarPhotosAbove);
-
+getPhotos(createSimilarPhotosAbove, showAlert);
 setUserFormSubmit(closeUserModal, createErr);
