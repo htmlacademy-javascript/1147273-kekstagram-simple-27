@@ -8,7 +8,6 @@ const getRandomIntInclusive = (min, max) => {
   return Math.floor(result);
 };
 
-// eslint-disable-next-line no-unused-vars
 const getRandomArrayElement = (elements) => elements[getRandomIntInclusive(0, elements.length - 1 )];
 
 const ALERT_SHOW_TIME = 5000;
