@@ -1,4 +1,4 @@
-const usersPhotos = document.querySelector('.pictures');
+const usersPhotosElement = document.querySelector('.pictures');
 
 const picturesUsersTemplate = document.querySelector('#picture')
   .content
@@ -11,7 +11,7 @@ const createSimilarPhotosAbove = (similarPhotos) => {
     pictureElement.querySelector('.picture__comments').textContent = user.comments;
     pictureElement.querySelector('.picture__likes').textContent = user.likes;
     pictureElement.querySelector('.picture__img').src = user.url;
-    usersPhotos.appendChild(pictureElement);
+    usersPhotosElement.appendChild(pictureElement);
   });
 };
 
