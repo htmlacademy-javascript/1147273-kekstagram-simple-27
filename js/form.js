@@ -7,12 +7,20 @@ const body = document.querySelector('body');
 const formUpload = document.querySelector('.img-upload__form');
 const closeOpenModal = document.getElementById('upload-cancel');
 
+const closeUserModal = () => {
+  formEditImg.classList.add('hidden');
+  body.classList.remove('modal-open');
+  formUpload.reset();
+  resetScale();
+  resetEffects();
+  uploadFile.value = '';
+};
+
 const onPopupEscKeydown = (evt) => {
   if (evt.key === 'Escape') {
     evt.preventDefault();
-    formEditImg.classList.add('hidden');
-    body.classList.remove('modal-open');
     document.removeEventListener('keydown', onPopupEscKeydown);
+    closeUserModal();
   }
 };
 
@@ -23,21 +31,9 @@ const setFormHandlers = () => {
     document.addEventListener('keydown', onPopupEscKeydown);
   });
   closeOpenModal.addEventListener('click', () => {
-    formEditImg.classList.add('hidden');
-    body.classList.remove('modal-open');
-    formUpload.reset();
-    resetScale();
-    resetEffects();
+    closeUserModal();
     document.removeEventListener('keydown', onPopupEscKeydown);
   });
-};
-
-const closeUserModal = () => {
-  formEditImg.classList.add('hidden');
-  body.classList.remove('modal-open');
-  formUpload.reset();
-  resetScale();
-  resetEffects();
 };
 
 const success = document.querySelector('#success')
@@ -48,31 +44,33 @@ const error = document.querySelector('#error')
   .content
   .querySelector('.error');
 
-const onPopupEscKeydownSuccess = (evt) => {
+const onPopupMessageEscKeydown = (evt) => {
   if (evt.key === 'Escape') {
     evt.preventDefault();
     success.remove();
     error.remove();
-    error.removeEventListener('keydown', onPopupEscKeydownSuccess);
-    document.addEventListener('keydown', onPopupEscKeydownSuccess);
+    document.removeEventListener('keydown', onPopupMessageEscKeydown);
+    document.addEventListener('keydown', onPopupEscKeydown);
   }
 };
 
 const createSuccess = () => {
   document.body.appendChild(success);
-  document.addEventListener('keydown', onPopupEscKeydownSuccess);
+  closeUserModal();
+  document.addEventListener('keydown', onPopupMessageEscKeydown);
   success.addEventListener('click', () => {
     success.remove();
-    document.removeEventListener('keydown', onPopupEscKeydownSuccess);
+    document.removeEventListener('keydown', onPopupMessageEscKeydown);
   });
 };
 
 const createError = () => {
   document.body.appendChild(error);
-  error.addEventListener('keydown', onPopupEscKeydownSuccess);
-  document.removeEventListener('keydown', onPopupEscKeydownSuccess);
+  document.removeEventListener('keydown', onPopupEscKeydown);
+  document.addEventListener('keydown', onPopupMessageEscKeydown);
   error.addEventListener('click', () => {
     error.remove();
+    document.addEventListener('keydown', onPopupEscKeydown);
   });
 };
 

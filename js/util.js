@@ -1,6 +1,6 @@
 const ALERT_SHOW_TIME = 5000;
 
-const showAlert = (message) => {
+const showAlert = () => {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = '100';
   alertContainer.style.position = 'absolute';
@@ -12,7 +12,7 @@ const showAlert = (message) => {
   alertContainer.style.textAlign = 'center';
   alertContainer.style.backgroundColor = 'red';
 
-  alertContainer.textContent = message;
+  alertContainer.textContent = 'Ошибка загрузка изображений.';
 
   document.body.append(alertContainer);
 

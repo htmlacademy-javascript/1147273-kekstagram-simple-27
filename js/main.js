@@ -4,5 +4,5 @@ import {createSimilarPhotosAbove} from './thumbs.js';
 import { showAlert } from './util.js';
 
 setFormHandlers();
-getPhotos(createSimilarPhotosAbove, showAlert('Ошибка загрузка изображений.'));
+getPhotos(createSimilarPhotosAbove, showAlert);
 setUserFormSubmit(closeUserModal, createError);
