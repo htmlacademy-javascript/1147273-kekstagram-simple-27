@@ -1,18 +1,6 @@
-const getRandomIntInclusive = (min, max) => {
-  if (min < 0 || max < 0) {
-    return NaN;
-  }
-  const lower = Math.ceil(Math.min(min, max));
-  const upper = Math.floor(Math.max(min, max));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
-};
-
-const getRandomArrayElement = (elements) => elements[getRandomIntInclusive(0, elements.length - 1 )];
-
 const ALERT_SHOW_TIME = 5000;
 
-const showAlert = (message) => {
+const showAlert = () => {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = '100';
   alertContainer.style.position = 'absolute';
@@ -24,7 +12,7 @@ const showAlert = (message) => {
   alertContainer.style.textAlign = 'center';
   alertContainer.style.backgroundColor = 'red';
 
-  alertContainer.textContent = message;
+  alertContainer.textContent = 'Ошибка загрузка изображений.';
 
   document.body.append(alertContainer);
 
@@ -33,4 +21,4 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-export {getRandomArrayElement, getRandomIntInclusive, showAlert};
+export {showAlert};
