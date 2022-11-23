@@ -1,19 +1,19 @@
 import {resetScale} from './scale.js';
 import {resetEffects} from './effect.js';
 
-const uploadFile = document.getElementById('upload-file');
-const formEditImg = document.querySelector('.img-upload__overlay');
-const body = document.querySelector('body');
-const formUpload = document.querySelector('.img-upload__form');
-const closeOpenModal = document.getElementById('upload-cancel');
+const uploadFileElement = document.querySelector('#upload-file');
+const imageFormElement = document.querySelector('.img-upload__overlay');
+const bodyElement = document.querySelector('body');
+const formUploadElement = document.querySelector('.img-upload__form');
+const closeOpenModalElement = document.querySelector('#upload-cancel');
 
 const closeUserModal = () => {
-  formEditImg.classList.add('hidden');
-  body.classList.remove('modal-open');
-  formUpload.reset();
+  imageFormElement.classList.add('hidden');
+  bodyElement.classList.remove('modal-open');
+  formUploadElement.reset();
   resetScale();
   resetEffects();
-  uploadFile.value = '';
+  uploadFileElement.value = '';
 };
 
 const onPopupEscKeydown = (evt) => {
@@ -25,53 +25,53 @@ const onPopupEscKeydown = (evt) => {
 };
 
 const setFormHandlers = () => {
-  uploadFile.addEventListener('change', () => {
-    formEditImg.classList.remove('hidden');
-    body.classList.add('modal-open');
+  uploadFileElement.addEventListener('change', () => {
+    imageFormElement.classList.remove('hidden');
+    bodyElement.classList.add('modal-open');
     document.addEventListener('keydown', onPopupEscKeydown);
   });
-  closeOpenModal.addEventListener('click', () => {
+  closeOpenModalElement.addEventListener('click', () => {
     closeUserModal();
     document.removeEventListener('keydown', onPopupEscKeydown);
   });
 };
 
-const success = document.querySelector('#success')
+const successTemplate = document.querySelector('#success')
   .content
   .querySelector('.success');
 
-const error = document.querySelector('#error')
+const errorTemplate = document.querySelector('#error')
   .content
   .querySelector('.error');
 
 const onPopupMessageEscKeydown = (evt) => {
   if (evt.key === 'Escape') {
     evt.preventDefault();
-    success.remove();
-    error.remove();
+    successTemplate.remove();
+    errorTemplate.remove();
     document.removeEventListener('keydown', onPopupMessageEscKeydown);
     document.addEventListener('keydown', onPopupEscKeydown);
   }
 };
 
-const createSuccess = () => {
-  document.body.appendChild(success);
+const showSuccessMessage = () => {
+  document.body.appendChild(successTemplate);
   closeUserModal();
   document.addEventListener('keydown', onPopupMessageEscKeydown);
-  success.addEventListener('click', () => {
-    success.remove();
+  successTemplate.addEventListener('click', () => {
+    successTemplate.remove();
     document.removeEventListener('keydown', onPopupMessageEscKeydown);
   });
 };
 
-const createError = () => {
-  document.body.appendChild(error);
+const showErrorMessage = () => {
+  document.body.appendChild(errorTemplate);
   document.removeEventListener('keydown', onPopupEscKeydown);
   document.addEventListener('keydown', onPopupMessageEscKeydown);
-  error.addEventListener('click', () => {
-    error.remove();
+  errorTemplate.addEventListener('click', () => {
+    errorTemplate.remove();
     document.addEventListener('keydown', onPopupEscKeydown);
   });
 };
 
-export {setFormHandlers, closeUserModal, formUpload, createSuccess, createError};
+export {setFormHandlers, closeUserModal, formUploadElement, showSuccessMessage, showErrorMessage};

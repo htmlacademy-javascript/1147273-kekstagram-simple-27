@@ -1,8 +1,8 @@
-const image = document.querySelector('.img-upload__preview img');
-const form = document.querySelector('.img-upload__form');
-const sliderElement = document.querySelector('.effect-level__slider');
-const sliderElementInner = document.querySelector('.img-upload__effect-level');
-const effectLevel = document.querySelector('.effect-level__value');
+const imagePreviewElement = document.querySelector('.img-upload__preview img');
+const ulpoadFormElement = document.querySelector('.img-upload__form');
+const sliderEffectElement = document.querySelector('.effect-level__slider');
+const sliderEffectInnerElement = document.querySelector('.img-upload__effect-level');
+const levelEffectElement = document.querySelector('.effect-level__value');
 
 const EFFECTS = [
   {
@@ -59,8 +59,8 @@ let chosenEffect = DEFAULT_EFFECT;
 const isDefault = () => chosenEffect === DEFAULT_EFFECT;
 
 const updateSlider = () => {
-  sliderElementInner.classList.remove('hidden');
-  sliderElement.noUiSlider.updateOptions({
+  sliderEffectInnerElement.classList.remove('hidden');
+  sliderEffectElement.noUiSlider.updateOptions({
     range: {
       min: chosenEffect.min,
       max: chosenEffect.max,
@@ -70,7 +70,7 @@ const updateSlider = () => {
   });
 
   if (isDefault()) {
-    sliderElementInner.classList.add('hidden');
+    sliderEffectInnerElement.classList.add('hidden');
   }
 };
 
@@ -83,16 +83,16 @@ const onFormChange = (evt) => {
 };
 
 const onSliderUpdate = () => {
-  image.style.filter = 'none';
-  image.className = '';
-  effectLevel.value = '';
+  imagePreviewElement.style.filter = 'none';
+  imagePreviewElement.className = '';
+  levelEffectElement.value = '';
   if (isDefault()) {
     return;
   }
-  const sliderValue = sliderElement.noUiSlider.get();
-  image.style.filter = `${chosenEffect.style}(${sliderValue}${chosenEffect.unit})`;
-  image.classList.add(`effects__preview--${chosenEffect.name}`);
-  effectLevel.value = sliderValue;
+  const sliderValue = sliderEffectElement.noUiSlider.get();
+  imagePreviewElement.style.filter = `${chosenEffect.style}(${sliderValue}${chosenEffect.unit})`;
+  imagePreviewElement.classList.add(`effects__preview--${chosenEffect.name}`);
+  levelEffectElement.value = sliderValue;
 };
 
 const resetEffects = () => {
@@ -100,7 +100,7 @@ const resetEffects = () => {
   updateSlider();
 };
 
-noUiSlider.create(sliderElement, {
+noUiSlider.create(sliderEffectElement, {
   range: {
     min: DEFAULT_EFFECT.min,
     max: DEFAULT_EFFECT.max,
@@ -111,7 +111,7 @@ noUiSlider.create(sliderElement, {
 });
 updateSlider();
 
-form.addEventListener('change', onFormChange);
-sliderElement.noUiSlider.on('update', onSliderUpdate);
+ulpoadFormElement.addEventListener('change', onFormChange);
+sliderEffectElement.noUiSlider.on('update', onSliderUpdate);
 
 export {resetEffects};
