@@ -1,4 +1,4 @@
-import { formUpload, createSuccess} from './form.js';
+import { formUploadElement, showSuccessMessage} from './form.js';
 
 const getPhotos = (onSuccess, onError) =>
   fetch('https://27.javascript.pages.academy/kekstagram-simple/data')
@@ -9,7 +9,7 @@ const getPhotos = (onSuccess, onError) =>
     });
 
 const setUserFormSubmit = (onSuccess, onFail) => {
-  formUpload.addEventListener('submit', (evt) => {
+  formUploadElement.addEventListener('submit', (evt) => {
     evt.preventDefault();
     const formData = new FormData(evt.target);
     fetch(
@@ -21,7 +21,7 @@ const setUserFormSubmit = (onSuccess, onFail) => {
     ).then((response) => {
       if (response.ok) {
         onSuccess();
-        createSuccess();
+        showSuccessMessage();
       } else {
         onFail();
       }
